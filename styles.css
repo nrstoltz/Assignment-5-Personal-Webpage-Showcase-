@@ -6,26 +6,42 @@
   behaves consistently.
 */
 :root{
-  --brand:#0b5cff;
-  --dark:#333;
-  --muted:#6b7280;
-  --bg:#f5f5f5;
-  --card:#ffffff;
+  /* Color system */
+  --brand: #0b5cff; /* primary accent */
+  --brand-600: #0849d1;
+  --dark: #111827; /* main text */
+  --muted: #6b7280; /* secondary text */
+  --bg: #f7f7fb; /* soft page background */
+  --card: #ffffff; /* card surface */
+  --success: #059669;
+  --danger: #b91c1c;
+
+  /* Typography */
+  --base-font-size: 16px;
+  --measure: 60ch; /* comfortable line length */
 }
 
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; /* modern, accessible stack */
-  background-color: var(--bg); /* light gray background behind the content */
-  margin: 0; /* remove default page margin */
-  padding: 0; /* remove default page padding */
-  color: #111827;
-  line-height:1.5;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  background-color: var(--bg);
+  margin: 0;
+  padding: 0;
+  color: var(--dark);
+  font-size: var(--base-font-size);
+  line-height: 1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
 /* Typographic scale */
-h1 { font-size:1.6rem; margin:0; }
-h2 { font-size:1.25rem; margin-top:0 }
-h3 { font-size:1.1rem; }
+h1 { font-size:2rem; margin:0 0 .25rem 0; line-height:1.1 }
+h2 { font-size:1.5rem; margin:0 0 .5rem 0 }
+h3 { font-size:1.125rem; margin:0 0 .5rem 0; color:var(--dark) }
+
+p { margin:0 0 0.9rem 0 }
+
+/* Limit measure for long paragraphs for comfortable reading */
+main p, .project-text p { max-width: var(--measure) }
 
 /* Make links more visible and focusable */
 a { color: var(--brand); }
@@ -33,10 +49,10 @@ a:focus, a:active { outline: 3px solid rgba(11,92,255,0.15); outline-offset: 2px
 
 /* Header styles: a dark bar with centered white text */
 header {
-  background-color: var(--dark);
-  color: #fff;
+  background-color: transparent;
+  color: inherit;
   text-align: center;
-  padding: 24px 12px; /* space inside the header */
+  padding: 28px 16px 8px 16px;
 }
 
 /* Navigation: remove default bullets and spacing */
@@ -62,18 +78,26 @@ nav a:hover{
   text-decoration: underline;
 }
 
+/* Desktop nav: subtle pill links */
+nav a{ background:transparent; border-radius:6px; padding:8px 10px }
+nav a:hover{ background: rgba(255,255,255,0.06) }
+
 /* Main content container: center the content and add a white card */
 main {
-  max-width: 900px; /* keeps lines readable on large screens */
-  margin: 20px auto; /* center horizontally */
-  padding: 24px; /* inner spacing */
-  background-color: var(--card); /* white content area */
-  box-shadow: 0px 4px 18px rgba(15, 23, 42, 0.06); /* subtle shadow for depth */
-  border-radius:8px;
+  max-width: 1000px; /* keep readable but allow wider content */
+  margin: 22px auto;
+  padding: 28px;
+  background-color: var(--card);
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+  border-radius: 12px;
 }
 
+/* Create a subtle page heading area for pages with h1 */
+.page-hero{ display:flex; align-items:center; justify-content:space-between; gap:16px }
+.page-hero h1{ font-weight:700 }
+
 .project {
-  margin: 20px 0; /* utility class for spacing between sections */
+  margin: 26px 0; /* spacing between project sections */
   display:block;
 }
 
@@ -86,16 +110,22 @@ main {
 }
 
 .project figure { margin:0 }
-.project-text{flex:1 1 420px;min-width:220px}
-.project img { width:100%; height:auto; border-radius:6px; display:block }
+.project-text{flex:1 1 420px;min-width:240px}
+.project img { width:100%; height:auto; border-radius:8px; display:block }
 .project figure{flex:0 0 360px;max-width:360px}
 .project img.screenshot {
   width:100%;
   height:auto;
-  aspect-ratio: 16 / 9; /* preserve a consistent ratio */
+  aspect-ratio: 16 / 9; /* keep consistent visuals */
   object-fit:cover;
-  border-radius:6px;
+  border-radius:8px;
+  box-shadow: 0 8px 18px rgba(15,23,42,0.06);
+  transition: transform .22s ease, box-shadow .22s ease;
 }
+
+/* hover and focus states for interactive polish */
+.project img.screenshot:hover,
+.project img.screenshot:focus{ transform: translateY(-4px) scale(1.02); box-shadow: 0 18px 36px rgba(15,23,42,0.12) }
 
 /* When multiple screenshots are side-by-side, keep a small gap and make them equal height */
 .project figure > div{display:flex;gap:8px}
@@ -112,6 +142,29 @@ main {
   .project > div { flex-direction:column }
   .project img.screenshot { max-width:100%; max-height:none }
 }
+
+/* Larger screens: two-column project layout variant */
+@media (min-width:1000px){
+  .project > div{ align-items:flex-start }
+  .project figure{flex:0 0 420px; max-width:420px}
+  .project-text{flex:1 1 560px}
+}
+
+/* Buttons and controls */
+.btn{background:var(--brand);color:#fff;padding:10px 16px;border:none;border-radius:8px;cursor:pointer;font-weight:600;box-shadow:0 6px 18px rgba(11,92,255,0.08);transition:background .15s ease, transform .08s ease}
+.btn:hover{background:var(--brand-600);transform:translateY(-1px)}
+.btn:focus{outline:3px solid rgba(11,92,255,0.12);outline-offset:2px}
+
+/* Muted text and small helpers */
+.muted{color:var(--muted)}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce){
+  .project img.screenshot, .btn{transition:none}
+}
+
+/* Small utility for visually-hidden text for a11y */
+.sr-only{position:absolute !important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
 
 /* Form and utility styles used across pages */
 .form-group{margin-bottom:1rem}
