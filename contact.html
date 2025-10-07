@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Contact - Nigel</title>
+    <!-- Link to shared stylesheet -->
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+    <header>
+        <h1>Contact</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Get in touch</h2>
+        <p>If you'd like to reach out you can email me or use the contact form below. Required fields are marked.</p>
+
+        <section id="contact-info" aria-label="Contact information">
+            <h3>Contact info</h3>
+            <ul>
+                <li>Email: <a href="mailto:nrstoltz@iu.edu" id="contact-email">nrstoltz@iu.edu</a></li>
+                <li>LinkedIn: <a href="https://www.linkedin.com/in/nigelstoltz" id="contact-linkedin" target="_blank" rel="noopener">linkedin.com/in/nigelstoltz</a></li>
+                <li>GitHub: <a href="https://github.com/nrstoltz" id="contact-github" target="_blank" rel="noopener">github.com/nrstoltz</a></li>
+            </ul>
+            <p class="muted">Tip: replace these placeholder links with your real email and profile URLs.</p>
+        </section>
+
+        <div class="container">
+        <form id="contact-form" action="thankyou.html" method="get" novalidate>
+            <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first-name" required>
+                <div class="error-message" id="err-first" aria-live="polite"></div>
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last-name" required>
+                <div class="error-message" id="err-last" aria-live="polite"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                <div class="error-message" id="err-email" aria-live="polite"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required minlength="8">
+                <div class="error-message" id="err-pass" aria-live="polite"></div>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required minlength="8">
+                <div class="error-message" id="err-confirm" aria-live="polite"></div>
+            </div>
+            <div class="form-group">
+                <button class="btn" type="submit">Submit</button>
+            </div>
+        </form>
+        </div>
+
+        <script>
+            // Simple client-side validation that complements built-in browser checks
+            const form = document.getElementById('contact-form');
+            form.addEventListener('submit', function(e){
+                // Clear prev errors
+                document.querySelectorAll('.error-message').forEach(el=>el.textContent='');
+
+                let valid = true;
+                const first = document.getElementById('first-name');
+                const last = document.getElementById('last-name');
+                const email = document.getElementById('email');
+                const pass = document.getElementById('password');
+                const confirm = document.getElementById('confirm-password');
+
+                if(!first.value.trim()){ document.getElementById('err-first').textContent='First name is required.'; valid=false }
+                if(!last.value.trim()){ document.getElementById('err-last').textContent='Last name is required.'; valid=false }
+                if(!email.checkValidity()){ document.getElementById('err-email').textContent='Please enter a valid email address.'; valid=false }
+                if(pass.value.length < 8){ document.getElementById('err-pass').textContent='Password must be at least 8 characters.'; valid=false }
+                if(confirm.value !== pass.value){ document.getElementById('err-confirm').textContent='Passwords do not match.'; valid=false }
+
+                if(!valid){
+                    e.preventDefault();
+                    return false;
+                }
+                // let the form submit to thankyou.html (GET used for demo only)
+            });
+        </script>
+    </main>
+    <footer>
+        &copy; 2025 Nigel
+    </footer>
+</body>
+</html>
