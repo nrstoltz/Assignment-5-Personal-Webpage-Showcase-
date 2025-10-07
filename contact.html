@@ -38,28 +38,28 @@
         <form id="contact-form" action="thankyou.html" method="get" novalidate>
             <div class="form-group">
                 <label for="first-name">First Name</label>
-                <input type="text" id="first-name" name="first-name" required>
-                <div class="error-message" id="err-first" aria-live="polite"></div>
+                <input type="text" id="first-name" name="first-name" required autocomplete="given-name" aria-describedby="err-first">
+                <div class="error-message" id="err-first" aria-live="polite" role="alert"></div>
             </div>
             <div class="form-group">
                 <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" name="last-name" required>
-                <div class="error-message" id="err-last" aria-live="polite"></div>
+                <input type="text" id="last-name" name="last-name" required autocomplete="family-name" aria-describedby="err-last">
+                <div class="error-message" id="err-last" aria-live="polite" role="alert"></div>
             </div>
             <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
-                <div class="error-message" id="err-email" aria-live="polite"></div>
+                <input type="email" id="email" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" autocomplete="email" aria-describedby="err-email">
+                <div class="error-message" id="err-email" aria-live="polite" role="alert"></div>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required minlength="8">
-                <div class="error-message" id="err-pass" aria-live="polite"></div>
+                <input type="password" id="password" name="password" required minlength="8" autocomplete="new-password" aria-describedby="err-pass">
+                <div class="error-message" id="err-pass" aria-live="polite" role="alert"></div>
             </div>
             <div class="form-group">
                 <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" required minlength="8">
-                <div class="error-message" id="err-confirm" aria-live="polite"></div>
+                <input type="password" id="confirm-password" name="confirm-password" required minlength="8" autocomplete="new-password" aria-describedby="err-confirm">
+                <div class="error-message" id="err-confirm" aria-live="polite" role="alert"></div>
             </div>
             <div class="form-group">
                 <button class="btn" type="submit">Submit</button>
@@ -68,9 +68,11 @@
         </div>
 
         <script>
-            // Simple client-side validation that complements built-in browser checks
+            // Client-side validation with accessible focus management.
             const form = document.getElementById('contact-form');
             form.addEventListener('submit', function(e){
+                // Prevent default submission so we don't send password fields in the URL
+                e.preventDefault();
                 // Clear prev errors
                 document.querySelectorAll('.error-message').forEach(el=>el.textContent='');
 
@@ -88,10 +90,20 @@
                 if(confirm.value !== pass.value){ document.getElementById('err-confirm').textContent='Passwords do not match.'; valid=false }
 
                 if(!valid){
-                    e.preventDefault();
+                    // Move focus to the first field that has an error
+                    const firstError = document.querySelector('.error-message:not(:empty)');
+                    if(firstError){
+                        const inputId = firstError.id.replace('err-','');
+                        const input = document.getElementById(inputId) || first;
+                        input.focus();
+                    }
                     return false;
                 }
-                // let the form submit to thankyou.html (GET used for demo only)
+
+                // All good — redirect to thankyou.html.
+                // Note: in production you'd POST to a server or use a form service.
+                window.location.href = 'thankyou.html';
+                return true;
             });
         </script>
     </main>
