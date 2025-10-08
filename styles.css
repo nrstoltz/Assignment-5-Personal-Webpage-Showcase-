@@ -458,15 +458,15 @@ main {
 }
 
 .project > div {
-  display: grid;
-  grid-template-columns: 1fr 700px;
-  gap: var(--space-16);
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
 }
 
 .project-text {
   font-size: var(--text-lg);
   line-height: 1.8;
+  max-width: 100%;
 }
 
 .project-text p {
@@ -476,6 +476,7 @@ main {
 .project figure {
   margin: 0;
   position: relative;
+  width: 100%;
 }
 
 .project-images {
@@ -483,13 +484,14 @@ main {
   grid-template-columns: 1fr 1fr;
   gap: var(--space-8);
   width: 100%;
+  margin-top: var(--space-8);
 }
 
 .project img.screenshot {
   width: 100%;
   height: auto;
-  min-height: 350px;
-  max-height: 500px;
+  min-height: 500px;
+  max-height: 700px;
   object-fit: cover;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
@@ -708,8 +710,7 @@ code {
 /* Advanced Responsive Design */
 @media (max-width: 1200px) {
   .hero-inner,
-  .bio-inner,
-  .project > div {
+  .bio-inner {
     grid-template-columns: 1fr;
     gap: var(--space-12);
   }
@@ -720,14 +721,18 @@ code {
     text-align: center;
   }
   
+  .project > div {
+    gap: var(--space-10);
+  }
+  
   .project-images {
     grid-template-columns: 1fr;
     gap: var(--space-6);
   }
   
   .project img.screenshot {
-    min-height: 300px;
-    max-height: 400px;
+    min-height: 400px;
+    max-height: 600px;
   }
 }
 
@@ -793,8 +798,8 @@ code {
   }
   
   .project img.screenshot {
-    min-height: 250px;
-    max-height: 350px;
+    min-height: 300px;
+    max-height: 450px;
   }
 }
 
@@ -809,6 +814,11 @@ code {
   
   .hero-text h2 {
     font-size: var(--text-2xl);
+  }
+  
+  .project img.screenshot {
+    min-height: 250px;
+    max-height: 400px;
   }
   
   iframe {
