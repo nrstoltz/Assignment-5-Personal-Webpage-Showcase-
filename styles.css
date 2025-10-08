@@ -171,6 +171,9 @@ main {
 /* Small utility for visually-hidden text for a11y */
 .sr-only{position:absolute !important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
 
+/* Required field marker */
+.required{color:var(--danger);margin-left:6px;font-weight:700}
+
 /* Form and utility styles used across pages */
 .form-group{margin-bottom:1rem}
 label{display:block;font-weight:600;margin-bottom:6px}
