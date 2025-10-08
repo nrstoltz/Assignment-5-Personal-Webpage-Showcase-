@@ -323,7 +323,7 @@ main {
 
 .project > div {
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: 1fr 500px;
   gap: var(--space-2xl);
   align-items: start;
 }
@@ -341,24 +341,29 @@ main {
   margin: 0;
 }
 
-.project figure > div {
+.project-images {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-sm);
+  gap: var(--space-md);
+  width: 100%;
 }
 
 .project img.screenshot {
   width: 100%;
   height: auto;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+  min-height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
   transition: all var(--transition-normal);
   border: 1px solid var(--bg-tertiary);
 }
 
 .project img.screenshot:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.02);
   box-shadow: var(--shadow-xl);
+  z-index: 10;
+  position: relative;
 }
 
 /* Buttons */
@@ -516,7 +521,12 @@ code {
     text-align: center;
   }
   
-  .project figure > div {
+  .project-images {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  
+  .project > div {
     grid-template-columns: 1fr;
   }
 }
@@ -567,6 +577,10 @@ code {
     text-align: center;
     margin-right: 0;
     margin-bottom: var(--space-md);
+  }
+  
+  .project img.screenshot {
+    min-height: 150px;
   }
   
   h1 {
