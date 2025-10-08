@@ -459,7 +459,7 @@ main {
 
 .project > div {
   display: grid;
-  grid-template-columns: 1fr 550px;
+  grid-template-columns: 1fr 700px;
   gap: var(--space-16);
   align-items: start;
 }
@@ -481,14 +481,15 @@ main {
 .project-images {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-6);
+  gap: var(--space-8);
   width: 100%;
 }
 
 .project img.screenshot {
   width: 100%;
   height: auto;
-  min-height: 250px;
+  min-height: 350px;
+  max-height: 500px;
   object-fit: cover;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
@@ -721,7 +722,12 @@ code {
   
   .project-images {
     grid-template-columns: 1fr;
-    gap: var(--space-4);
+    gap: var(--space-6);
+  }
+  
+  .project img.screenshot {
+    min-height: 300px;
+    max-height: 400px;
   }
 }
 
@@ -787,7 +793,8 @@ code {
   }
   
   .project img.screenshot {
-    min-height: 200px;
+    min-height: 250px;
+    max-height: 350px;
   }
 }
 
