@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nigel's personal webpage showcasing skills, projects and contact information.">
+    <title>Nigel Stoltz's Personal Webpage</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Nigel Stoltz</h1>
+        <p class="muted">Kelley School of Business — MSIS | Indiana University</p>
+    </header>
+
+    <nav aria-label="Primary">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About Me</a></li>
+            <li><a href="{{ url_for('resume') }}">Resume</a></li>
+            <li><a href="{{ url_for('projects') }}">Projects</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="card">
+        <section id="hero" aria-label="Introduction">
+            <div class="hero-inner">
+                <div class="hero-text">
+                    <h2>Hello — I'm Nigel Stoltz</h2>
+                    <p>Hello, my name is Nigel Stoltz, and I'm currently in the Kelley School of Business MSIS program at Indiana University. I completed my Bachelor's in Informatics from IU in May 2025, and I'm now focused on expanding my knowledge of technology and artificial intelligence, and exploring how businesses are evolving to adapt to the changes AI is bringing to the industry.</p>
+                    <p>
+                        <a class="btn" href="{{ url_for('about') }}">About Me</a>
+                        <a class="btn" href="{{ url_for('resume') }}">Resume</a>
+                        <a class="btn" href="{{ url_for('projects') }}">See Projects</a>
+                        <a class="btn" href="{{ url_for('contact') }}">Contact</a>
+                    </p>
+                </div>
+                <figure class="hero-figure">
+                    <img class="screenshot" src="/images/nigel.jpg" alt="Photo of Nigel Stoltz">
+                    <figcaption class="muted">Photo of Nigel Stoltz</figcaption>
+                </figure>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p class="muted">© 2025 Nigel Stoltz</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About Me - Nigel Stoltz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <meta name="description" content="About Nigel Stoltz — background, interests, and goals">
+</head>
+<body>
+    <header>
+        <h1>About Me</h1>
+    </header>
+
+    <nav aria-label="Primary">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About Me</a></li>
+            <li><a href="{{ url_for('resume') }}">Resume</a></li>
+            <li><a href="{{ url_for('projects') }}">Projects</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="card">
+        <section id="bio">
+            <div class="bio-inner">
+                <div class="bio-text">
+                    <h2>Biography</h2>
+                    <p>
+                        My name is Nigel Stoltz, and I'm a graduate student at Indiana University Bloomington, currently working toward my Master of Science in Information Systems (MSIS) at the Kelley School of Business. I earned my B.S. in Informatics with a minor in Business from IU in May 2025.
+                    </p>
+                    <p>
+                        Over the years, my interests have always centered around technology and the human side that comes with it. When I decided to combine my Informatics background with business, it gave me a deeper understanding of how technology can solve real business problems and help companies create more value. I've really grown to appreciate how much impact thoughtful tech solutions can have when they're designed with people in mind.
+                    </p>
+                    <p>
+                        For my career, I want to be seen as a respected and reliable representative of my company, and to feel like the work I'm doing actually matters. It's important to me that what I do feels meaningful, rewarding, and like it's helping to make some kind of positive difference.
+                    </p>
+                    <p>
+                        Outside of school, I'm usually staying active or spending time with friends. I love skiing, lifting weights, playing soccer and basketball, and keeping up with my favorite sports teams. Whether it's getting outside, watching a game, or learning something new, I like staying busy and enjoying the little things that keep life interesting.
+                    </p>
+                </div>
+
+                <aside class="bio-aside">
+                    <figure>
+                        <img class="screenshot" src="/images/nigel.jpg" alt="Photo of Nigel Stoltz">
+                        <figcaption class="muted">Photo of Nigel Stoltz</figcaption>
+                    </figure>
+                </aside>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p class="muted">© 2025 Nigel Stoltz</p>
+    </footer>
+</body>
+</html>

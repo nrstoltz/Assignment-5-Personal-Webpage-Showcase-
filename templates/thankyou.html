@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thank You!</title>
+    <meta name="description" content="Thank you for contacting Nigel Stoltz">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Thank you</h1>
+    </header>
+    <nav aria-label="Primary">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About Me</a></li>
+            <li><a href="{{ url_for('resume') }}">Resume</a></li>
+            <li><a href="{{ url_for('projects') }}">Projects</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+    <main class="card">
+        <h2>Thanks for getting in touch!</h2>
+        <p>Your message has been received. This demo site uses a static thank-you page — in a real site the form would be handled on a server and you would receive a confirmation email.</p>
+    </main>
+
+    <footer>
+        <p class="muted">© 2025 Nigel Stoltz</p>
+    </footer>
+</body>
+</html>

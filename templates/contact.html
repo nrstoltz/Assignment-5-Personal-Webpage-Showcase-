@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Contact - Nigel</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+    <header>
+        <h1>Contact</h1>
+    </header>
+    <nav aria-label="Primary">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About Me</a></li>
+            <li><a href="{{ url_for('resume') }}">Resume</a></li>
+            <li><a href="{{ url_for('projects') }}">Projects</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+    <main class="card">
+        <h2>Get in touch</h2>
+        <p>If you'd like to reach out you can email me or use the contact form below. Required fields are marked.</p>
+
+        <section id="contact-info" aria-label="Contact information">
+            <h3>Contact info</h3>
+            <ul>
+                <li>Email: <a href="mailto:nrstoltz@iu.edu" id="contact-email">nrstoltz@iu.edu</a></li>
+                <li>LinkedIn: <a href="https://www.linkedin.com/in/nigelstoltz" id="contact-linkedin" target="_blank" rel="noopener">linkedin.com/in/nigelstoltz</a></li>
+                <li>GitHub: <a href="https://github.com/nrstoltz" id="contact-github" target="_blank" rel="noopener">github.com/nrstoltz</a></li>
+            </ul>
+        </section>
+
+        <!-- Original Contact Form -->
+        <section id="contact-form-section" aria-label="Contact form">
+            <h3>Contact Form</h3>
+            <p>Send me a message:</p>
+            
+            <div class="container">
+                <form id="contact-form" action="{{ url_for('contact') }}" method="post" novalidate>
+                    <div class="form-group">
+                        <label for="first-name">First Name <span class="required" aria-hidden="true">*</span></label>
+                        <input type="text" id="first-name" name="first-name" required aria-required="true" autocomplete="given-name" aria-describedby="err-first">
+                        <div class="error-message" id="err-first" aria-live="polite" role="alert"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name <span class="required" aria-hidden="true">*</span></label>
+                        <input type="text" id="last-name" name="last-name" required aria-required="true" autocomplete="family-name" aria-describedby="err-last">
+                        <div class="error-message" id="err-last" aria-live="polite" role="alert"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required" aria-hidden="true">*</span></label>
+                        <input type="email" id="email" name="email" required aria-required="true" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" autocomplete="email" aria-describedby="err-email">
+                        <div class="error-message" id="err-email" aria-live="polite" role="alert"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password <span class="required" aria-hidden="true">*</span></label>
+                        <input type="password" id="password" name="password" required aria-required="true" minlength="8" autocomplete="new-password" aria-describedby="err-pass">
+                        <div class="error-message" id="err-pass" aria-live="polite" role="alert"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password <span class="required" aria-hidden="true">*</span></label>
+                        <input type="password" id="confirm-password" name="confirm-password" required aria-required="true" minlength="8" autocomplete="new-password" aria-describedby="err-confirm">
+                        <div class="error-message" id="err-confirm" aria-live="polite" role="alert"></div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Project Addition Form -->
+        <section id="add-project" aria-label="Add new project">
+            <h3>Add New Project</h3>
+            <p>Add a new project to the portfolio database:</p>
+            
+            <div class="container">
+                <form id="project-form" action="{{ url_for('contact') }}" method="post" novalidate>
+                    <div class="form-group">
+                        <label for="project-title">Project Title <span class="required" aria-hidden="true">*</span></label>
+                        <input type="text" id="project-title" name="project-title" required aria-required="true" aria-describedby="err-project-title">
+                        <div class="error-message" id="err-project-title" aria-live="polite" role="alert"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-description">Project Description <span class="required" aria-hidden="true">*</span></label>
+                        <textarea id="project-description" name="project-description" required aria-required="true" rows="4" aria-describedby="err-project-description"></textarea>
+                        <div class="error-message" id="err-project-description" aria-live="polite" role="alert"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="image-filename">Image Filename (optional)</label>
+                        <input type="text" id="image-filename" name="image-filename" placeholder="e.g., my-project.png">
+                        <small>Enter the filename of the image (should be in the /images/ folder)</small>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn" type="submit">Add Project</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <script>
+            // Client-side validation for contact form
+            const contactForm = document.getElementById('contact-form');
+            contactForm.addEventListener('submit', function(e){
+                // Clear prev errors
+                document.querySelectorAll('#contact-form-section .error-message').forEach(el=>el.textContent='');
+
+                let valid = true;
+                const first = document.getElementById('first-name');
+                const last = document.getElementById('last-name');
+                const email = document.getElementById('email');
+                const pass = document.getElementById('password');
+                const confirm = document.getElementById('confirm-password');
+
+                if(!first.value.trim()){ document.getElementById('err-first').textContent='First name is required.'; valid=false }
+                if(!last.value.trim()){ document.getElementById('err-last').textContent='Last name is required.'; valid=false }
+                if(!email.checkValidity()){ document.getElementById('err-email').textContent='Please enter a valid email address.'; valid=false }
+                if(pass.value.length < 8){ document.getElementById('err-pass').textContent='Password must be at least 8 characters.'; valid=false }
+                if(confirm.value !== pass.value){ document.getElementById('err-confirm').textContent='Passwords do not match.'; valid=false }
+
+                if(!valid){
+                    // Move focus to the first field that has an error
+                    const firstError = document.querySelector('#contact-form-section .error-message:not(:empty)');
+                    if(firstError){
+                        const inputId = firstError.id.replace('err-','');
+                        const input = document.getElementById(inputId) || first;
+                        input.focus();
+                    }
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Allow the POST to submit
+                return true;
+            });
+
+            // Client-side validation for project form
+            const projectForm = document.getElementById('project-form');
+            projectForm.addEventListener('submit', function(e){
+                // Clear prev errors
+                document.querySelectorAll('#add-project .error-message').forEach(el=>el.textContent='');
+
+                let valid = true;
+                const title = document.getElementById('project-title');
+                const description = document.getElementById('project-description');
+
+                if(!title.value.trim()){ document.getElementById('err-project-title').textContent='Project title is required.'; valid=false }
+                if(!description.value.trim()){ document.getElementById('err-project-description').textContent='Project description is required.'; valid=false }
+
+                if(!valid){
+                    // Move focus to the first field that has an error
+                    const firstError = document.querySelector('#add-project .error-message:not(:empty)');
+                    if(firstError){
+                        const inputId = firstError.id.replace('err-project-','');
+                        const input = document.getElementById('project-' + inputId) || title;
+                        input.focus();
+                    }
+                    e.preventDefault();
+                    return false;
+                }
+
+                // Allow the POST to submit
+                return true;
+            });
+        </script>
+    </main>
+    <footer>
+        &copy; 2025 Nigel
+    </footer>
+</body>
+</html>

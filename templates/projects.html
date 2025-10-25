@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projects - Nigel Stoltz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Projects</h1>
+    </header>
+
+    <nav aria-label="Primary">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About Me</a></li>
+            <li><a href="{{ url_for('resume') }}">Resume</a></li>
+            <li><a href="{{ url_for('projects') }}">Projects</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="card">
+        <h2>Projects</h2>
+
+        {% if projects %}
+            {% for project in projects %}
+            <section class="project" aria-labelledby="proj-{{ loop.index }}">
+                <h3 id="proj-{{ loop.index }}">{{ project.Title }}</h3>
+                <div>
+                    <div class="project-text">
+                        {% for paragraph in project.Description.split('\n\n') %}
+                            <p>{{ paragraph }}</p>
+                        {% endfor %}
+                        
+                        {% if project.LiveDemo %}
+                            <p><strong>Live demo:</strong> <a href="{{ project.LiveDemo }}" target="_blank" rel="noopener">{{ project.LiveDemo }}</a></p>
+                        {% endif %}
+                    </div>
+
+                    <figure>
+                        <div class="project-images">
+                            <img class="screenshot" src="/images/{{ project.Image }}" alt="{{ project.Title }} screenshot">
+                            {% if project.AdditionalImages %}
+                                <img class="screenshot" src="/images/{{ project.AdditionalImages }}" alt="{{ project.Title }} screenshot 2">
+                            {% endif %}
+                        </div>
+                    </figure>
+                </div>
+            </section>
+            {% endfor %}
+        {% else %}
+            <p>No projects found in the database.</p>
+        {% endif %}
+        
+        <div class="add-project-section">
+            <h3>Add New Project</h3>
+            <p>Want to add a new project? <a href="{{ url_for('contact') }}">Go to the Contact page</a> to add a new project to the database.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p class="muted">© 2025 Nigel Stoltz</p>
+    </footer>
+</body>
+</html>

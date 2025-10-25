@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resume - Nigel Stoltz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Resume</h1>
+    </header>
+
+    <nav aria-label="Primary">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About Me</a></li>
+            <li><a href="{{ url_for('resume') }}">Resume</a></li>
+            <li><a href="{{ url_for('projects') }}">Projects</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="card">
+        <h2>Nigel Stoltz — Resume (PDF)</h2>
+
+        <section id="pdf">
+            <p>You can view or download the PDF version of my resume below.</p>
+            <p><a href="/nigelstoltz-resume.pdf" download>Download Resume (PDF)</a></p>
+            <iframe src="/nigelstoltz-resume.pdf" title="Resume PDF" style="width:100%;height:700px;border:1px solid #ddd;"></iframe>
+        </section>
+    </main>
+
+    <footer>
+        <p class="muted">© 2025 Nigel Stoltz</p>
+    </footer>
+</body>
+</html>
